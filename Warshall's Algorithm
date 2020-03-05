@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[,] matrixarray = { {0, 1, 0, 0}
+                               ,{0, 1, 0, 1},
+                               {0, 0, 1, 1}, 
+                               {0, 1, 0, 0} };
+            newclass obj = new newclass();
+            obj.mat(matrixarray);
+            Console.ReadLine();
+        }
+    }
+    class newclass
+    {
+        public static int rc = 4;
+        public void mat(int[,] mn)
+        {
+            int[,] matrixarray = new int[rc, rc];
+            for (int i = 0; i < rc; i++)
+            {
+                for (int j = 0; j < rc; j++)
+                {
+                    matrixarray[i, j] = mn[i, j];
+                }
+            }
+            for (int i = 0; i < rc; i++)
+            {
+                for (int j = 0; j < rc; j++)
+                {
+                    for (int k = 0; k < rc; k++)
+                    {
+                        matrixarray[j, k] = (matrixarray[j, k] != 0) || ((matrixarray[i, k] != 0) && (matrixarray[j, i] != 0)) ? 1 : 0;
+                    }
+                }
+            }
+            matrixarrayPrinter(matrixarray);
+        }
+        public void matrixarrayPrinter(int[,] mn)
+        {
+            for (int i = 0; i < rc; ++i)
+            {
+                for (int j = 0; j < rc; ++j)
+                {
+                    if (mn[i, j] == 99999)
+                    {
+                        Console.Write("\t");
+                    }
+                    else
+                    {
+                        Console.Write(mn[i, j] + "\t");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+    
+}
